@@ -1,0 +1,11 @@
+#!/bin/bash
+
+case $BLOCK_BUTTON in
+  1) xbacklight -set 5   ;; # left click, to minimum
+  2) xbacklight -set 50  ;; # middle click, to minimum
+  3) xbacklight -set 100 ;; # right click, to maximum
+  4) xbacklight -inc 5   ;; # scroll up, increase
+  5) xbacklight -dec 5   ;; # scroll down, decrease
+esac
+
+xbacklight | cut -d. -f1 | awk '{print $1"%"}'

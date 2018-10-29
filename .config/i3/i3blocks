@@ -1,0 +1,159 @@
+separator_block_width=25
+
+#[worked]
+#label=   
+#command= DATE=$(date +%d-%m-%y) && FILE="/home/bkubiak/.scripts/time/$DATE.log" && if [ -f $FILE ]; then SECS=$(cat $FILE) && printf '%dh %dm %ds\n' $(($SECS/3600)) $(($SECS%3600/60)) $(($SECS%60)); fi
+#interval=1
+#color=#BCC0FF
+
+#[EOD]
+#label= 
+#command= SECS=$(( $(date --date="2017/07/19 + 17 hours 30 minutes" +%s) - $(date +%s) )) && printf '%dd %dh %dm %ds\n' $(($SECS/86400)) $(($SECS%86400/3600)) $(($SECS%3600/60)) $(($SECS%60))
+#interval=1
+#color=#BCC0FF
+
+#[weekend]
+#label= 
+#command= SECS=$(( $(date --date="Fri. + 18 hours" +%s) - $(date +%s) )) && printf '%dd %dh %dm %ds\n' $(($SECS/86400)) $(($SECS%86400/3600)) $(($SECS%3600/60)) $(($SECS%60))
+#interval=1
+#color=#F99D9F
+
+#[velib-work]
+#label=    
+#command= printf "`curl -s 'https://api.jcdecaux.com/vls/v1/stations/41?contract=toulouse&apiKey='$JCD_API | jq -r '.available_bikes'` / 21"
+#interval=60
+#color=#6EDDA4
+
+#label=    
+#command= printf "`curl -s 'https://api.jcdecaux.com/vls/v1/stations/195?contract=toulouse&apiKey='$JCD_API | jq -r '.available_bikes'` / 18"
+#interval=60
+#color=#F9E060
+
+[bandwidth]
+label=
+command=~/.config/i3/scripts/i3blocks-contrib/bandwidth2/bandwidth2 -w 307200:30720 -c 512000:51200
+interval=persist
+#min_width=xxxxxxxxxxxxxxxxxx
+markup=pango
+color=#00DFFF
+
+[dropbox]
+label=
+command=~/.config/i3/scripts/dropbox.sh
+interval=3
+
+[spotify]
+label=
+command=~/.config/i3/scripts/spotify/spotify.py
+color=#81b71a
+interval=5
+
+[disk-root]
+label= 
+command=~/.config/i3/scripts/disk /
+interval=60
+color=#4182FF
+
+[memory]
+label= 
+command=~/.config/i3/scripts/memory
+interval=15
+color=#00DFFF
+
+[cpu]
+label=
+command=~/.config/i3/scripts/cpu_usage
+interval=5
+color=#4182FF
+
+#[swap]
+#label=Swap:
+#command=~/.config/i3/scripts/memory swap
+#interval=30
+
+#[Weather]
+#command=~/.config/i3/IconicWeather.sh "31500"
+#interval=1800
+#color=#e97ac8
+
+# [mail]
+# label= 
+# command=~/.i3/.mail.sh.x
+# interval=100
+# color=#7F00FF 
+
+# [disk-home]
+# label=:
+# command=~/.config/i3/scripts/disk $HOME
+# interval=30
+# color=#859900
+
+# [ssid]
+# label=
+# command=echo "$(iw dev wlo1 link | grep SSID | cut -d " " -f 2-)"
+# color=#d33682
+# interval=5
+
+# [wireless]
+# label=W
+# instance=wlo1
+# command=~/.config/i3/scripts/iface
+# color=#00FF00
+# interval=10
+
+# [ethernet]
+# label=E
+# instance=eno1
+# command=~/.config/i3/scripts/network
+# color=#00FF00
+# interval=10
+
+# [strength]
+# command=echo "$(iw dev wlo1 link | grep signal | cut -d " " -f 2-)"
+# interval=10
+# color=#cb4b16
+
+[temp]
+label=
+command=echo "$(sensors coretemp-isa-0000 | awk '/Package id 0: / {print $4}')"
+interval=10
+color=#00DFFF
+
+#[battery]
+#label=
+#interval=10
+#command=~/.config/i3/scripts/battery
+# interval=30
+
+[battery]
+command=~/.config/i3/scripts/i3blocks-contrib/battery/battery
+markup=pango
+interval=30
+color=#4182FF
+
+#[load]
+#label=     
+#command=~/.config/i3/scripts/load_average
+#interval=10
+#color=#BD93F9
+
+[brightness]
+label=
+command=~/.config/i3/scripts/brightness
+interval=1
+signal=10
+color=#00DFFF
+
+[volume]
+label= 
+command=~/.config/i3/scripts/volume
+interval=1
+signal=10
+color=#4182FF
+
+[time]
+# command-date " %a %m-%d-%y %l:%M:%S %p"
+label= 
+command=date '+%a %d %b %R:%S %p'
+interval=1
+color=#00DFFF
